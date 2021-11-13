@@ -1,23 +1,30 @@
 import nltk
 nltk.download("all")
 from nltk.corpus import wordnet
-synonyms = []
-# antonyms = []
-words = input()
-for word in words.split():
-    syn_list = []
-    for syn in wordnet.synsets(word):
-        for hypernym in syn.hypernyms():
-            print (hypernym)
-        for l in syn.lemmas():
-            syn_list.append(l.name())
-            # if l.antonyms():
-            #     antonyms.append(l.antonyms()[0].name())
+def syn(words):
+    ret = []
+    synonyms = []
+    h_nym = []
+    # antonyms = []
+    # words = input()
+    for word in words.split():
+        syn_list = []
+        for syn in wordnet.synsets(word):
+            for hypernym in syn.hypernyms():
+                # print (hypernym)
+                h_nym.append(hypernym)
+            for l in syn.lemmas():
+                syn_list.append(l.name())
+                # if l.antonyms():
+                #     antonyms.append(l.antonyms()[0].name())
 
 
-    synonyms.append(syn_list)
-
-print((synonyms))
+        synonyms.append(syn_list)
+    for l in synonyms:
+        ret += l
+    print((ret))
+    return ret
+# syn("cat")
 # lookup(synonyms)
 
 # print(set(antonyms))
