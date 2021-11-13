@@ -8,7 +8,7 @@ app = Flask(__name__)
 api = Api(app)
 CORS(app)
 
-
+# {"query": ["list", "of", "words", "to", "find", "synonyms"]}
 @app.route('/synonyms', methods=['POST'])
 def get_synonyms_list():
     content = request.json
@@ -23,6 +23,7 @@ def get_synonyms_list():
     resp.status_code = 200
     return resp
 
+# {"query": ["list", "of", "tags"]}
 @app.route('/findartist', methods=['POST'])
 def get_artist():
     content = request.json
@@ -33,6 +34,8 @@ def get_artist():
     resp.status_code = 200
     return resp
 
+# send request to this route with something Like
+# {"name": "artist_name", "tags": ["list", "of", "tags"]}
 @app.route('/newartist', methods=['POST'])
 def new_artist():
     content = request.json
